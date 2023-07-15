@@ -1,3 +1,5 @@
+import json
+
 import get_data
 
 def get_users_data(data:dict) -> list:
@@ -12,3 +14,10 @@ def get_users_data(data:dict) -> list:
     Returns:
         list: users data list
     """
+    users_data=[]
+    for i in data['results']:
+        users_data+=[{"first_name": i['name']['first'], "last_name":i['name']['last'], "phone_number": i['phone']}]
+    return users_data
+f=open('randomuser_data.json').read()
+data=json.loads(f)
+print(get_users_data(data))
